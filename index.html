@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AVOCADO ($AVO) — The Extra Superfood Meme Coin!</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Nunito:wght@600;800;900&display=swap" rel="stylesheet">
+    <!-- Canvas Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        avoLime: '#52B788',
+                        avoBright: '#88D053',
+                        avoDark: '#2D6A4F',
+                        avoLight: '#D8F3DC',
+                        toastBrown: '#F4A261',
+                        toastYellow: '#E9C46A',
+                        bgCream: '#FBFDF9'
+                    },
+                    fontFamily: {
+                        heading: ['Fredoka', 'sans-serif'],
+                        body: ['Nunito', 'sans-serif']
+                    },
+                    animation: {
+                        'wobble': 'wobble 3s ease-in-out infinite',
+                        'pulse-glow': 'pulseGlow 2s ease-in-out infinite',
+                        'float-slow': 'floatSlow 4s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        wobble: {
+                            '0%, 100%': { transform: 'rotate(0deg) scale(1)' },
+                            '25%': { transform: 'rotate(-4deg) scale(1.02)' },
+                            '75%': { transform: 'rotate(4deg) scale(1.02)' }
+                        },
+                        pulseGlow: {
+                            '0%, 100%': { filter: 'drop-shadow(0 0 15px rgba(136, 208, 83, 0.4))' },
+                            '50%': { filter: 'drop-shadow(0 0 30px rgba(136, 208, 83, 0.8))' }
+                        },
+                        floatSlow: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-12px)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: #FBFDF9;
+            overflow-x: hidden;
+        }
+        h1, h2, h3, h4, .font-heading {
+            font-family: 'Fredoka', sans-serif;
+        }
+        .cartoon-border {
+            border: 4px solid #2D6A4F;
+        }
+        .cartoon-shadow {
+            box-shadow: 6px 6px 0px #2D6A4F;
+        }
+        .cartoon-shadow-lg {
+            box-shadow: 10px 10px 0px #2D6A4F;
+        }
+        .cartoon-shadow-sm {
+            box-shadow: 4px 4px 0px #2D6A4F;
+        }
+        .btn-pop {
+            transition: all 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .btn-pop:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 8px 8px 0px #2D6A4F;
+        }
+        .btn-pop:active {
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0px #2D6A4F;
+        }
+        /* Tap particles */
+        .tap-particle {
+            position: absolute;
+            pointer-events: none;
+            animation: particleUp 0.8s ease-out forwards;
+            font-family: 'Fredoka', sans-serif;
+            font-weight: 700;
+            user-select: none;
+            z-index: 50;
+        }
+        @keyframes particleUp {
+            0% { opacity: 1; transform: translateY(0) scale(0.8) rotate(0deg); }
+            100% { opacity: 0; transform: translateY(-70px) scale(1.3) rotate(15deg); }
+        }
+    </style>
+</head>
+<body class="text-gray-900 bg-bgCream min-h-screen">
+
+    <!-- Background Decor floating elements -->
+    <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden opacity-20">
+        <div class="absolute top-12 left-10 text-5xl animate-float-slow">🥑</div>
+        <div class="absolute top-1/3 right-10 text-6xl animate-float-slow" style="animation-delay: 1s;">✨</div>
+        <div class="absolute bottom-1/4 left-16 text-5xl animate-float-slow" style="animation-delay: 2s;">⚡</div>
+        <div class="absolute bottom-10 right-16 text-6xl animate-float-slow" style="animation-delay: 1.5s;">🥑</div>
+    </div>
+
+    <!-- Header Navigation -->
+    <header class="relative z-40 pt-6 px-4">
+        <div class="max-w-6xl mx-auto bg-white rounded-full cartoon-border cartoon-shadow px-6 py-3 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-11 h-11 rounded-full cartoon-border overflow-hidden bg-avoLight flex items-center justify-center">
+                    <img src="watermarked_img_11843014381954307417.jpg" alt="AVO Logo" class="w-full h-full object-cover" onerror="this.onerror=null; this.parentNode.innerHTML='<svg viewBox=\'0 0 100 100\' class=\'w-full h-full\'><path d=\'M50 10 C30 10 15 35 15 60 C15 80 30 90 50 90 C70 90 85 80 85 60 C85 35 70 10 50 10 Z\' fill=\'#88D053\' stroke=\'#2D6A4F\' stroke-width=\'5\'/><circle cx=\'50\' cy=\'65\' r=\'14\' fill=\'#6A381F\'/></svg>'">
+                </div>
+                <span class="font-heading text-2xl font-bold tracking-wide text-avoDark">AVOCADO <span class="text-avoBright">$AVO</span></span>
+            </div>
+            
+            <nav class="hidden md:flex items-center space-x-6 font-heading font-bold text-gray-700">
+                <a href="#vibe" class="hover:text-avoDark transition-colors">Vibe</a>
+                <a href="#minigame" class="hover:text-avoDark transition-colors">Smash Game</a>
+                <a href="#builder" class="hover:text-avoDark transition-colors">Toast Builder</a>
+            </nav>
+
+            <div class="flex items-center space-x-3">
+                <a href="https://t.me" target="_blank" class="w-10 h-10 rounded-full bg-avoLight cartoon-border flex items-center justify-center text-avoDark hover:bg-avoBright transition-colors font-bold">
+                    <i class="fa-brands fa-telegram text-lg"></i>
+                </a>
+                <a href="https://twitter.com" target="_blank" class="w-10 h-10 rounded-full bg-avoLight cartoon-border flex items-center justify-center text-avoDark hover:bg-avoBright transition-colors font-bold">
+                    <i class="fa-brands fa-x-twitter text-lg"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="relative z-10 pt-12 pb-16 px-4 max-w-6xl mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            
+            <!-- Left Info -->
+            <div class="lg:col-span-7 text-center lg:text-left">
+                <div class="inline-flex items-center space-x-2 bg-toastYellow/40 border-2 border-avoDark px-4 py-1.5 rounded-full text-sm font-extrabold text-avoDark mb-6">
+                    <span class="text-lg">⚡</span>
+                    <span>THE EXTRA SUPERFOOD MEME COIN</span>
+                </div>
+                
+                <h1 class="font-heading text-5xl sm:text-7xl lg:text-8xl font-black text-avoDark leading-tight mb-6">
+                    GO GREEN WITH <span class="text-avoBright underline decoration-toastYellow decoration-wavy">$AVO</span>!
+                </h1>
+                
+                <p class="text-xl sm:text-2xl text-gray-700 font-bold max-w-xl mx-auto lg:mx-0 mb-8 leading-relaxed">
+                    Why be basic when you can be 100% extra? $AVO brings organic energy, max hype, and pure guac power to the meme world! 🥑✨
+                </p>
+
+                <!-- CTA Row -->
+                <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4">
+                    <a href="https://t.me" target="_blank" class="btn-pop bg-avoBright text-avoDark font-heading text-xl font-bold px-8 py-4 rounded-2xl cartoon-border cartoon-shadow flex items-center space-x-3">
+                        <i class="fa-brands fa-telegram text-2xl"></i>
+                        <span>Join Guac Gang</span>
+                    </a>
+                    <button onclick="triggerHypeSound()" class="btn-pop bg-toastYellow text-avoDark font-heading text-xl font-bold px-6 py-4 rounded-2xl cartoon-border cartoon-shadow flex items-center space-x-2">
+                        <span class="text-2xl">📢</span>
+                        <span>Boost Hype!</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Right Character Card -->
+            <div class="lg:col-span-5 flex justify-center">
+                <div class="relative group cursor-pointer" onclick="heroMascotClick(event)">
+                    <!-- Background aura -->
+                    <div class="absolute -inset-4 bg-avoBright/40 rounded-full blur-2xl -z-10 group-hover:bg-avoBright/60 transition-all"></div>
+                    
+                    <!-- Main Mascot Display Container -->
+                    <div class="w-72 h-72 sm:w-88 sm:h-88 bg-white rounded-3xl cartoon-border cartoon-shadow-lg p-6 flex items-center justify-center relative overflow-hidden animate-wobble animate-pulse-glow">
+                        <img 
+                            src="watermarked_img_11843014381954307417.jpg" 
+                            alt="AVOCADO Character" 
+                            class="w-full h-full object-contain rounded-2xl transform transition-transform group-hover:scale-105"
+                            onerror="this.onerror=null; this.style.display='none'; document.getElementById('hero-svg-fallback').classList.remove('hidden');"
+                        >
+                        <!-- Pure SVG Mascot Fallback -->
+                        <div id="hero-svg-fallback" class="hidden w-full h-full flex items-center justify-center">
+                            <svg viewBox="0 0 200 220" class="w-full h-full drop-shadow-md">
+                                <path d="M100 20 C60 20 30 70 30 130 C30 180 60 200 100 200 C140 200 170 180 170 130 C170 70 140 20 100 20 Z" fill="#88D053" stroke="#2D6A4F" stroke-width="8" stroke-linejoin="round"/>
+                                <path d="M100 35 C70 35 45 78 45 128 C45 168 70 185 100 185 C130 185 155 168 155 128 C155 78 130 35 100 35 Z" fill="#B5E48C"/>
+                                <circle cx="100" cy="140" r="28" fill="#6A381F" stroke="#2D6A4F" stroke-width="5"/>
+                                <circle cx="92" cy="132" r="8" fill="#8B4513"/>
+                                <circle cx="82" cy="90" r="7" fill="#2D6A4F"/>
+                                <circle cx="118" cy="90" r="7" fill="#2D6A4F"/>
+                                <circle cx="84" cy="88" r="2.5" fill="#FFFFFF"/>
+                                <circle cx="120" cy="88" r="2.5" fill="#FFFFFF"/>
+                                <path d="M90 105 Q100 115 110 105" stroke="#2D6A4F" stroke-width="5" fill="none" stroke-linecap="round"/>
+                                <path d="M100 20 Q95 5 80 5 Q90 15 100 20 Z" fill="#52B788" stroke="#2D6A4F" stroke-width="3"/>
+                                <path d="M100 20 Q105 5 120 5 Q110 15 100 20 Z" fill="#52B788" stroke="#2D6A4F" stroke-width="3"/>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <!-- Badge below card -->
+                    <div class="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-avoDark text-white font-heading px-5 py-2 rounded-full border-2 border-white text-sm font-bold cartoon-shadow-sm flex items-center space-x-1 whitespace-nowrap">
+                        <span>Tap character for hype!</span>
+                        <span class="text-base">👇</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- INTERACTIVE AVOCADO SMASH MINIGAME -->
+    <section id="minigame" class="py-16 px-4 relative z-10">
+        <div class="max-w-4xl mx-auto bg-white rounded-3xl cartoon-border cartoon-shadow-lg p-6 sm:p-10 text-center relative overflow-hidden">
+            
+            <div class="inline-block bg-avoLight text-avoDark px-4 py-1 rounded-full font-heading font-bold text-sm mb-3">
+                🎮 INTERACTIVE MINIGAME
+            </div>
+            <h2 class="font-heading text-3xl sm:text-5xl font-black text-avoDark mb-2">
+                GUAC SMASH METER!
+            </h2>
+            <p class="text-gray-600 font-bold mb-8">
+                Tap the Avocado to generate maximum Guac energy and trigger the Super Explosion!
+            </p>
+
+            <!-- Stats & Progress Bar -->
+            <div class="max-w-md mx-auto mb-6">
+                <div class="flex justify-between font-heading font-bold text-avoDark text-lg mb-2">
+                    <span>Power Level</span>
+                    <span id="power-percent">0%</span>
+                </div>
+                <div class="w-full h-8 bg-gray-100 rounded-full cartoon-border p-1">
+                    <div id="power-bar" class="h-full bg-avoBright rounded-full transition-all duration-200" style="width: 0%"></div>
+                </div>
+            </div>
+
+            <!-- Clickable Center Target -->
+            <div class="relative py-4 inline-block">
+                <button id="smash-btn" class="focus:outline-none transform active:scale-90 transition-transform">
+                    <div class="w-44 h-44 sm:w-52 sm:h-52 bg-avoLight rounded-full cartoon-border cartoon-shadow p-4 flex items-center justify-center relative hover:bg-avoBright/30">
+                        <img 
+                            src="watermarked_img_11843014381954307417.jpg" 
+                            alt="Smash Mascot" 
+                            class="w-36 h-36 object-contain pointer-events-none"
+                            onerror="this.onerror=null; this.style.display='none'; document.getElementById('smash-svg-fallback').classList.remove('hidden');"
+                        >
+                        <div id="smash-svg-fallback" class="hidden w-36 h-36 flex items-center justify-center pointer-events-none">
+                            <svg viewBox="0 0 100 100" class="w-full h-full">
+                                <path d="M50 10 C30 10 15 35 15 60 C15 80 30 90 50 90 C70 90 85 80 85 60 C85 35 70 10 50 10 Z" fill="#88D053" stroke="#2D6A4F" stroke-width="5"/>
+                                <circle cx="50" cy="65" r="14" fill="#6A381F" stroke="#2D6A4F" stroke-width="3"/>
+                                <circle cx="42" cy="45" r="4" fill="#2D6A4F"/>
+                                <circle cx="58" cy="45" r="4" fill="#2D6A4F"/>
+                                <path d="M44 53 Q50 58 56 53" stroke="#2D6A4F" stroke-width="3" fill="none"/>
+                            </svg>
+                        </div>
+                    </div>
+                </button>
+            </div>
+
+            <div class="mt-4 font-heading text-lg font-bold text-avoDark">
+                Total Smashes: <span id="smash-count" class="text-2xl text-avoBright">0</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- VIBE & LORE SECTION -->
+    <section id="vibe" class="py-16 px-4 relative z-10">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-12">
+                <div class="inline-block bg-toastYellow/40 text-avoDark px-4 py-1 rounded-full font-heading font-bold text-sm mb-3">
+                    🥑 THE VIBE
+                </div>
+                <h2 class="font-heading text-4xl sm:text-6xl font-black text-avoDark">
+                    WHY WE GO $AVO?
+                </h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="bg-white rounded-3xl cartoon-border cartoon-shadow p-8 text-center hover:-translate-y-2 transition-transform">
+                    <div class="w-20 h-20 rounded-2xl bg-avoLight cartoon-border flex items-center justify-center text-4xl mx-auto mb-6">
+                        🥑
+                    </div>
+                    <h3 class="font-heading text-2xl font-bold text-avoDark mb-3">Pure Superfood Energy</h3>
+                    <p class="text-gray-600 font-bold leading-relaxed">
+                        Packed with organic optimism, lightning vibe, and maximum positive momentum for the entire community.
+                    </p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-white rounded-3xl cartoon-border cartoon-shadow p-8 text-center hover:-translate-y-2 transition-transform">
+                    <div class="w-20 h-20 rounded-2xl bg-toastYellow/50 cartoon-border flex items-center justify-center text-4xl mx-auto mb-6">
+                        ⚡
+                    </div>
+                    <h3 class="font-heading text-2xl font-bold text-avoDark mb-3">100% Extra</h3>
+                    <p class="text-gray-600 font-bold leading-relaxed">
+                        Never basic! Always extra flavor, extra memes, and extra fun served fresh every single day.
+                    </p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bg-white rounded-3xl cartoon-border cartoon-shadow p-8 text-center hover:-translate-y-2 transition-transform">
+                    <div class="w-20 h-20 rounded-2xl bg-avoBright/40 cartoon-border flex items-center justify-center text-4xl mx-auto mb-6">
+                        💚
+                    </div>
+                    <h3 class="font-heading text-2xl font-bold text-avoDark mb-3">Community Driven</h3>
+                    <p class="text-gray-600 font-bold leading-relaxed">
+                        Created for avocado lovers and meme enthusiasts worldwide. Built on pure organic love.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ASSEMBLE YOUR GUAC TOAST WIDGET -->
+    <section id="builder" class="py-16 px-4 relative z-10 mb-12">
+        <div class="max-w-4xl mx-auto bg-white rounded-3xl cartoon-border cartoon-shadow-lg p-6 sm:p-10 text-center">
+            
+            <div class="inline-block bg-toastYellow/40 text-avoDark px-4 py-1 rounded-full font-heading font-bold text-sm mb-3">
+                🍞 MINI WIDGET
+            </div>
+            <h2 class="font-heading text-3xl sm:text-5xl font-black text-avoDark mb-2">
+                BUILD YOUR MEME TOAST
+            </h2>
+            <p class="text-gray-600 font-bold mb-8">
+                Select your ingredients to construct the ultimate hyped $AVO toast!
+            </p>
+
+            <!-- Toast Assembly Visual Area -->
+            <div class="bg-bgCream rounded-2xl cartoon-border p-6 max-w-md mx-auto mb-8 min-h-[200px] flex flex-col items-center justify-center relative">
+                <div id="toast-plate" class="text-7xl sm:text-8xl transition-all transform duration-300">
+                    🍞
+                </div>
+                <div id="toast-status" class="mt-4 font-heading font-bold text-xl text-avoDark">
+                    Plain Toast (Needs Guac!)
+                </div>
+            </div>
+
+            <!-- Ingredient Buttons -->
+            <div class="flex flex-wrap justify-center gap-3 max-w-lg mx-auto">
+                <button onclick="addIngredient('avocado')" class="btn-pop bg-avoLight text-avoDark font-heading font-bold px-4 py-2.5 rounded-xl cartoon-border text-sm flex items-center space-x-2">
+                    <span>🥑 Fresh Avocado</span>
+                </button>
+                <button onclick="addIngredient('chili')" class="btn-pop bg-red-100 text-red-700 font-heading font-bold px-4 py-2.5 rounded-xl cartoon-border text-sm flex items-center space-x-2">
+                    <span>🌶️ Chili Flakes</span>
+                </button>
+                <button onclick="addIngredient('seed')" class="btn-pop bg-yellow-100 text-yellow-800 font-heading font-bold px-4 py-2.5 rounded-xl cartoon-border text-sm flex items-center space-x-2">
+                    <span>✨ Everything Seasoning</span>
+                </button>
+                <button onclick="resetToast()" class="btn-pop bg-gray-200 text-gray-700 font-heading font-bold px-4 py-2.5 rounded-xl cartoon-border text-sm">
+                    <span>🔄 Reset</span>
+                </button>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-white border-t-4 border-avoDark py-8 px-4 text-center">
+        <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center space-x-3">
+                <div class="w-8 h-8 rounded-full cartoon-border overflow-hidden bg-avoLight flex items-center justify-center">
+                    <img src="watermarked_img_11843014381954307417.jpg" alt="AVO Logo" class="w-full h-full object-cover" onerror="this.onerror=null; this.parentNode.innerHTML='<svg viewBox=\'0 0 100 100\' class=\'w-full h-full\'><path d=\'M50 10 C30 10 15 35 15 60 C15 80 30 90 50 90 C70 90 85 80 85 60 C85 35 70 10 50 10 Z\' fill=\'#88D053\' stroke=\'#2D6A4F\' stroke-width=\'5\'/><circle cx=\'50\' cy=\'65\' r=\'14\' fill=\'#6A381F\'/></svg>'">
+                </div>
+                <span class="font-heading font-bold text-xl text-avoDark">AVOCADO ($AVO)</span>
+            </div>
+            
+            <p class="font-heading font-bold text-sm text-gray-500">
+                Created purely for fun, memes & extra guacamole! 🥑
+            </p>
+
+            <div class="flex items-center space-x-4">
+                <a href="https://t.me" target="_blank" class="text-avoDark hover:text-avoBright text-xl"><i class="fa-brands fa-telegram"></i></a>
+                <a href="https://twitter.com" target="_blank" class="text-avoDark hover:text-avoBright text-xl"><i class="fa-brands fa-x-twitter"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE JAVASCRIPT -->
+    <script>
+        // Hero Mascot Click Effect
+        function heroMascotClick(e) {
+            confetti({
+                particleCount: 25,
+                spread: 60,
+                origin: { x: e.clientX / window.innerWidth, y: e.clientY / window.innerHeight },
+                colors: ['#52B788', '#88D053', '#F4A261']
+            });
+        }
+
+        // Hype Sound / Effect Trigger
+        function triggerHypeSound() {
+            confetti({
+                particleCount: 70,
+                spread: 90,
+                origin: { y: 0.6 },
+                colors: ['#52B788', '#88D053', '#E9C46A']
+            });
+        }
+
+        // Smash Minigame State
+        let smashCount = 0;
+        let powerLevel = 0;
+        const smashBtn = document.getElementById('smash-btn');
+        const smashCountElem = document.getElementById('smash-count');
+        const powerBar = document.getElementById('power-bar');
+        const powerPercentElem = document.getElementById('power-percent');
+
+        smashBtn.addEventListener('click', (e) => {
+            smashCount++;
+            smashCountElem.innerText = smashCount;
+
+            if (powerLevel < 100) {
+                powerLevel += 5;
+                if (powerLevel > 100) powerLevel = 100;
+            } else {
+                // Trigger 100% explosion
+                confetti({
+                    particleCount: 120,
+                    spread: 100,
+                    origin: { y: 0.5 },
+                    colors: ['#52B788', '#88D053', '#F4A261', '#E9C46A']
+                });
+                powerLevel = 0;
+            }
+
+            powerBar.style.width = powerLevel + '%';
+            powerPercentElem.innerText = powerLevel + '%';
+
+            // Floating Particle
+            createParticle(e);
+        });
+
+        function createParticle(e) {
+            const particles = ['+1 GUAC 🥑', 'EXTRA! ⚡', 'DELICIOUS! ✨', 'EXTRA GUAC! 🥑'];
+            const text = particles[Math.floor(Math.random() * particles.length)];
+
+            const p = document.createElement('div');
+            p.className = 'tap-particle text-avoDark';
+            p.innerText = text;
+
+            const rect = smashBtn.getBoundingClientRect();
+            p.style.left = `${(e.clientX || rect.left + 50) - 40}px`;
+            p.style.top = `${(e.clientY || rect.top + 50) - 20}px`;
+
+            document.body.appendChild(p);
+
+            setTimeout(() => p.remove(), 800);
+        }
+
+        // Toast Builder State
+        let toastState = { avocado: false, chili: false, seed: false };
+
+        function addIngredient(type) {
+            toastState[type] = true;
+            updateToastVisual();
+        }
+
+        function resetToast() {
+            toastState = { avocado: false, chili: false, seed: false };
+            updateToastVisual();
+        }
+
+        function updateToastVisual() {
+            const plate = document.getElementById('toast-plate');
+            const status = document.getElementById('toast-status');
+
+            if (toastState.avocado && toastState.chili && toastState.seed) {
+                plate.innerText = '🥑🍞✨🌶️';
+                status.innerText = 'ULTIMATE $AVO SUPER-TOAST! 🔥';
+                confetti({ particleCount: 30, spread: 50, origin: { y: 0.7 } });
+            } else if (toastState.avocado && (toastState.chili || toastState.seed)) {
+                plate.innerText = '🥑🍞✨';
+                status.innerText = 'Super Seasoned Guac Toast!';
+            } else if (toastState.avocado) {
+                plate.innerText = '🥑🍞';
+                status.innerText = 'Fresh Guacamole Toast!';
+            } else if (toastState.chili || toastState.seed) {
+                plate.innerText = '🍞🌶️';
+                status.innerText = 'Seasoned Toast (Missing Avocado!)';
+            } else {
+                plate.innerText = '🍞';
+                status.innerText = 'Plain Toast (Needs Guac!)';
+            }
+        }
+    </script>
+</body>
+</html>
